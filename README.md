@@ -1,62 +1,117 @@
-# Kinsta - Hello World - Static Site With Astro 🚀
+# Brutal - The neobrutalist Astro theme
 
-An example of how to deploy a static site built with Astro on Kinsta Hosting.
+Brutal is a minimal neobrutalist theme for [Astro](https://astro.build/). It's based on Neobrutalist Web Design, a movement that aims to create websites with a minimalistic and functional design. It has some integrations like Image Optimization, RSS, Sitemap, ready to get your SEO done right.
 
----
-Kinsta is a developer-centric cloud host / PaaS. We’re striving to make it easier for you to share your web projects with your users. You can focus on coding and building, and we'll take care of deployments with fast, scalable hosting. 
+The theme has no JavaScript integration out of the box, but can always be added of course.
 
-At Kinsta, Static Sites are free, and you can host up to 100 sites on your account for completely free.
+This template is based on [my own personal website](<https://www.elian.codes/>), with some more generic things added.
 
-Kinsta offers 24/7 support via our chat system, which is always one click away in [MyKinsta](https://my.kinsta.com/) for customers with a paid plan or service.
+## Usage
 
-If you only have a Static Site Hosting account, we have detailed [Static Site Hosting documentation](https://kinsta.com/docs/static-site-hosting/) available. You can also connect with developers and knowledgeable community members in the [Kinsta Community](https://community.kinsta.com/c/static-sites/22) forum.
+You can bootstrap a new Astro project using Brutal with the following command:
 
-- [Start your free trial](https://kinsta.com/signup/?product_type=app-db)
-- [Application Hosting](https://kinsta.com/application-hosting)
-- [Database Hosting](https://kinsta.com/database-hosting)
-- [Static Site Hosting](https://kinsta.com/static-site-hosting)
+```bash
+# npm 6.x
+npx create astro@latest --template eliancodes/brutal
 
-## Setup
-<details>
-<summary><strong>Static Site Hosting</strong> [click to expand]</summary>
+# npm 7+
+npx create astro@latest -- --template eliancodes/brutal
 
-### Dependency Management
+# pnpm
+pnpm dlx create-astro --template eliancodes/brutal
 
-Kinsta automatically installs dependencies defined in your `package.json` file during the deployment process.
+# yarn
+yarn create astro --template eliancodes/brutal
+```
 
-### Setting the Build Command, Node version, and Publish directory
+### Commands
 
-After connecting the repository, **Static Site Hosting** will automatically try to populate all the fields with the correct values.
-| Configuration option |Value     |
-|---|---|
-| Build command | `npm run build` |
-| Node version  |  18.16.0  |
-| Publish directory | `dist`  |
+All commands are run from the root of the project, from a terminal:
 
-### Deployment Lifecycle
+(Here I use PNPM, no problem if you use NPM or Yarn)
 
-Whenever a deployment is initiated (through creating an application or re-deploying due to an incoming commit), the build command is run, followed by the deployment of the Publish Directory content.
-</details>
+| Command             | Action                                             |
+| :------------------ | :------------------------------------------------- |
+| `pnpm install`      | Installs dependencies                              |
+| `pnpm dev`          | Starts local dev server at `localhost:3000`        |
+| `pnpm build`        | Build your production site to `./dist/`            |
+| `pnpm preview`      | Preview your build locally, before deploying       |
+| `pnpm astro ...`    | Run CLI commands like `astro add`, `astro preview` |
+| `pnpm astro --help` | Get help using the Astro CLI                       |
 
-<details>
-<summary><strong>Application Hosting</strong> [click to expand]</summary>
+## Integrations
 
-### Dependency Management
+### UnoCSS
 
-Kinsta automatically installs dependencies defined in your `package.json` file during the deployment process.
+In this theme, I'm using [UnoCSS](https://uno.antfu.me/) to generate the CSS. It's a utility-first CSS framework that uses a single class to style elements. It's very easy to use and has a lot of features. It's setup to be completely compatible with TailwindCSS, with the advantage of being able to use PureCSS icons. You can always switch out UnoCSS for TailwindCSS if you want to, without breaking the general styles.
 
-### Port
+### Sitemap
 
-Kinsta automatically sets the `PORT` environment variable. You should **not** define it yourself and you should **not** hard-code it into the application. The `serve` package utilizes the port set by Kinsta automatically.
+To generate the sitemap, you don't need to do anything. It's automatically generated when you build your site. You'll just need to switch out the `site` on `astro.config.mjs` to your own.
 
-### Start Command
+```js title="astro.config.mjs"
+import { defineConfig } from 'astro/config';
 
-When deploying an application, Kinsta automatically creates a web process with `npm start` as the entry point. Make sure to use this command to run your server.
+export default defineConfig({
+  site: 'https://example.com',
+});
+```
 
-### Deployment Lifecycle
+### RSS
 
-Whenever a deployment is initiated (through creating an application or re-deploying due to an incoming commit), the `npm build` command is run, followed by the `npm start` command.
-</details>
+The RSS feed is automatically generated from the Markdown files in the `src/content/blog` folder. You can ofcourse completely change this to your own needs.
 
-## What is Astro
-Astro is a static site framework focusing on content-rich websites to deliver faster load times with less JavaScript. More information is available on the [astro.build](https://astro.build/) website.
+The RSS will output to `https://example.com/feed.xml` by default. You can change this, by renaming `src/pages/feed.xml.js`.
+
+### Image
+
+## Components
+
+### `components/blog/`
+
+This directory contains all components for the blog.
+
+### `components/errors/`
+
+This directory contains all error components.
+
+#### `components/errors/404.astro`
+
+This component is used when a page is not found.
+
+### `components/generic/`
+
+This directory contains all generic components, reused over multiple pages.
+
+### `components/home/`
+
+This directory contains all components for the home page.
+
+### `components/layout/`
+
+This directory contains all layout components. For instance, the header and footer and `<head>` section.
+
+### Colors
+
+The theme has a few colors that you can use in the included components.
+
+- red
+- blue
+- green
+- yellow
+- pink
+- purple
+- orange
+- teal
+- cyan
+- lime
+- emerald
+- fuchsia
+- violet
+- rose
+- sky
+- amber
+
+More colors can be added in `astro.config.mjs` in the `colors` array.
+
+If you need more from this theme, don't hesitate to open an issue or reach out to me!
